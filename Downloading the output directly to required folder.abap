@@ -37,3 +37,41 @@ FORM save_file.
       data_tab                = gt_spfli.
 
 ENDFORM.                    " save_file
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DATA: gt_t550a  TYPE TABLE OF t550a,
+      gwa_t550a TYPE t550a.
+
+DATA: gv_filename TYPE string,
+      gv_filetype TYPE char10.
+
+
+PERFORM get_data.
+IF NOT gt_t550a[] IS INITIAL.
+  PERFORM save_file.
+ELSE.
+  MESSAGE 'No data found' TYPE 'I'.
+ENDIF.
+
+
+FORM get_data.
+
+  SELECT * FROM t550a
+         INTO TABLE gt_t550a.
+ENDFORM.
+
+FORM save_file.
+  gv_filename = 'C:\Desktop\data.csv'.
+
+*  gv_filename = 'C:\Desktop\data.txt'.
+
+
+  CALL FUNCTION 'GUI_DOWNLOAD'
+    EXPORTING
+      filename                = gv_filename
+      filetype                = 'ASC'
+      write_field_separator   = 'X'
+    TABLES
+      data_tab                = gt_t550a.
+
+ENDFORM.
