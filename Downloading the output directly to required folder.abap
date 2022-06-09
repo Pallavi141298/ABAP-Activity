@@ -64,7 +64,9 @@ FORM save_file.
   gv_filename = 'C:\Desktop\data.csv'.
 
 *  gv_filename = 'C:\Desktop\data.txt'.
-
+*  gv_filename = 'C:\users\vinay\desktop\Export.xls'.
+*  gv_filename = 'C:\users\vinay\desktop\Export.doc'.
+*  gv_filename = 'C:\users\vinay\desktop\Export.pdf'.
 
   CALL FUNCTION 'GUI_DOWNLOAD'
     EXPORTING
