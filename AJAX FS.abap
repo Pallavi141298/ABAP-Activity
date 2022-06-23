@@ -1,3 +1,5 @@
+"COLLECT_DATA"
+
 METHOD collect_data.
     LOOP AT mt_pa0000 INTO DATA(ls_pa0000) GROUP BY ( pernr = ls_pa0000-pernr )
       ASCENDING
