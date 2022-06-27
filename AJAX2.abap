@@ -1,3 +1,37 @@
+class ZCL_QUARTERLY_TAX2 definition
+  public
+  final
+  create public .
+
+public section.
+
+  types:
+    BEGIN OF ty_input_data,
+        pernr   TYPE RANGE OF pernr_d,
+        year    TYPE RANGE OF gjahr,
+        quarter TYPE RANGE OF zhr_quarters_de,
+      END OF ty_input_data .
+  types:
+    tt_result TYPE TABLE OF payin_result WITH DEFAULT KEY .
+
+  data:
+    mt_pa0002 TYPE STANDARD TABLE OF pa0002 .
+  data:
+    mt_pa0008 TYPE STANDARD TABLE OF pa0008 .
+data:
+mt_pa0041 type standard table of PA0041.
+
+  methods CONSTRUCTOR
+    importing
+      !IS_INPUT_DATA type TY_INPUT_DATA .
+  methods EXECUTE .
+
+
+
+
+
+
+
 "SE24"
 "CONSTRUCTOR"
 
