@@ -65,7 +65,8 @@ METHOD collect_data.
 *             <fs_output>-dol = ls_dol-endda.
 *           endif.
 "Chance made by me"
-        LOOP AT mt_pa0041 INTO DATA(ls_mt_pa0041).
+          read table mt_pa0041 into data(ls_mt_pa0041) with key pernr = ls_group-pernr.
+        "LOOP AT mt_pa0041 INTO DATA(ls_mt_pa0041)."
           DO 6 TIMES VARYING ls_mt_pa0041-dar01 FROM ls_mt_pa0041-dar01 NEXT ls_mt_pa0041-dar02
              VARYING ls_mt_pa0041-dat01 FROM ls_mt_pa0041-dat01 NEXT ls_mt_pa0041-dat02 .
             CASE ls_mt_pa0041-dar01.
@@ -75,8 +76,9 @@ METHOD collect_data.
                 <fs_output>-dol = ls_mt_pa0041-dat01.
             ENDCASE.
           ENDDO.
-
-        ENDLOOP.
+        "ENDLOOP."
+        clear ls_mt_pa0041.
+        
         "Get date of birtday
         READ TABLE mt_pa0002 INTO DATA(ls_dob) WITH KEY pernr = ls_group-pernr BINARY SEARCH.
         IF sy-subrc IS INITIAL.
